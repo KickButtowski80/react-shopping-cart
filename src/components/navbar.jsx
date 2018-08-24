@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 const NavBar = (props) =>{
+        console.log("navbar" + props.totalPrice);
          return (
            <nav className="navbar navbar-light bg-light">
               <a className="navbar-brand" href="#">Navbar</a>

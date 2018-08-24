@@ -9,15 +9,16 @@ class App extends Component {
       { id: 1, value: 0 },
       { id: 2, value: 0 },
       { id: 3, value: 0 },
-      { id: 4, value: 0 }
+      { id: 4, value: 10 }
     ],
 
     totalPrice: 0,
 
   }
+
     componentDidMount = () => {
-    console.log('GrandChild did mount.');
-    this.handleTotalPrice();
+    console.log('GrandChild did mount.' + this.handleTotalPrice());
+    // this.setState({totalPrice: this.handleTotalPrice()});
   }
  
   handleTotalPrice = () => {
@@ -44,8 +45,13 @@ class App extends Component {
     const index = counters.indexOf(counter);
     counters[index] = { ...counter };
     counters[index].value++;
-    this.handleTotalPrice();
-    this.setState({ counters });
+    // setState is a promise fucntion and may take a while to 
+    // run. if you add a comma and an anonymous function after
+    // the object of this.setState, it will wait until this.setState
+    // is completed to run the function
+    this.setState({ counters }, 
+      () => { this.handleTotalPrice() });   
+    // this.handleTotalPrice();
    
 
 
