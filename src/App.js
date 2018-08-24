@@ -15,11 +15,11 @@ class App extends Component {
     totalPrice: 0,
 
   }
-
-  componentDidMount = () => {
+    componentDidMount = () => {
     console.log('GrandChild did mount.');
     this.handleTotalPrice();
   }
+ 
   handleTotalPrice = () => {
    
     let { totalPrice } = this.state;
@@ -34,7 +34,8 @@ class App extends Component {
 
 
   handleIncrement = counter => {
-    let { totalPrice } = this.state;
+     
+    // let { totalPrice } = this.state;
     // [...this.state.counters] clones the counters array 
     //which directly changes the value of contures array 
     // inside state which is not good
@@ -43,8 +44,9 @@ class App extends Component {
     const index = counters.indexOf(counter);
     counters[index] = { ...counter };
     counters[index].value++;
-    this.setState({ counters });
     this.handleTotalPrice();
+    this.setState({ counters });
+   
 
 
   }
