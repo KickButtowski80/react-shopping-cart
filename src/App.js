@@ -21,17 +21,20 @@ class App extends Component {
     this.handleTotalPrice();
   }
   handleTotalPrice = () => {
+   
     let { totalPrice } = this.state;
     let array = this.state.counters.map(a => (a.value));
     totalPrice = array.reduce((a, b) => a + b, 0);
     console.log(totalPrice);
     // totalPrice += 1;
-    this.setState({ totalPrice: totalPrice });
+    this.setState({ totalPrice });
+
 
   }
 
 
   handleIncrement = counter => {
+    let { totalPrice } = this.state;
     // [...this.state.counters] clones the counters array 
     //which directly changes the value of contures array 
     // inside state which is not good
