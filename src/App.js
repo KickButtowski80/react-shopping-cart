@@ -68,8 +68,11 @@ class App extends Component {
   }
 
   handleDelete = (counterId) => {
-    const counters = this.state.counters.filter(c => c.id !== counterId);
-    this.setState({ counters: counters });
+    const counters = this.state.counters.filter((c) => c.id !== counterId);
+    let updateTotalPrice = this.state.counters.filter( c => c.id === counterId);
+    updateTotalPrice = this.state.totalPrice - updateTotalPrice[0].value;
+    this.setState({ counters: counters, totalPrice: updateTotalPrice });
+    
   }
   render() {
     return (
