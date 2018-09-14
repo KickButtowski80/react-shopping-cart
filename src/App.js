@@ -23,6 +23,7 @@ class App extends Component {
     console.log("value in handleReplicate is "  + counter.value);
     this.setState({ text: "I am replicated" });
     this.setState({counters: this.state.counters.concat({id: counter.id +1000 ,value: counter.value, replcated: true})});  
+    this.setState({totalPrice: this.state.totalPrice+ counter.value })
   }
   
   handleCreateCounter = () =>{
