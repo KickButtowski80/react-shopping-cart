@@ -11,12 +11,27 @@ class App extends Component {
       { id: 3, value: 2 },
       { id: 4, value: 3 }
     ],
-
     totalPrice: 0,
+    
+    text: "",
 
   }
 
-    componentDidMount = () => {
+  
+  handelReplicate = (counter) => {
+    let value = counter.value;
+    let id = counter.id;
+    console.log("id in handelReplicate is " + counter.id);
+    console.log("value in handleReplicate is "  + counter.value);
+    this.setState({ text: "I am replicated" });
+    let array_counters = this.state.counters;
+    let unique_id =  undefined;
+    
+    if(Object.keyes(array_counters).inludes(counter.id))
+    unique_id =Math.floor(Math.random() * 10000001)
+    else
+    unique_id =counter.id
+    this.setState({counters: this.state.counters.concat({id: unique_id ,value: counter.value})});  
   }
   
   handleCreateCounter = () =>{
@@ -30,8 +45,6 @@ class App extends Component {
     totalPrice = array.reduce((a, b) => a + b, 0);
     console.log(totalPrice);
     this.setState({ totalPrice });
-
-
   }
 
 
@@ -73,19 +86,43 @@ class App extends Component {
     
   }
   render() {
+    var divStyle = {backgroundColor: 'red', height: 'auto'}
     return (
       <div className="App">
         <NavBar totalCounters={this.state.counters.filter( c => c.value >  0 ).length}
                 totalPrice = {this.state.totalPrice}/>
-        <main className="container">
-          <Counters
-          counters = {this.state.counters}
-          onReset={this.handleReset} 
-          onIncrement={this.handleIncrement} 
-          onDelete={this.handleDelete}
-          onCreate = {this.handleCreateCounter}
-          />
-        </main>
+                
+          <div className="row">
+            <div className="col-md-6">
+              <div id="right">
+                <Counters
+                counters = {this.state.counters}
+                onReset={this.handleReset} 
+                onIncrement={this.handleIncrement} 
+                onDelete={this.handleDelete}
+                onCreate = {this.handleCreateCounter}
+                onReplicate = { this.handelReplicate}
+                />
+              </div>
+            
+            </div>
+            <div className="col-md-6">
+                <div id="left" style={divStyle}> 
+                  <h4 className="p-3 mb-2 bg-success text-white"> I am the replicate column </h4>
+                  
+                    {this.state.text}
+                                    <Counters
+                counters = {this.state.counters}
+                onReset={this.handleReset} 
+                onIncrement={this.handleIncrement} 
+                onDelete={this.handleDelete}
+                onCreate = {this.handleCreateCounter}
+                onReplicate = { this.handelReplicate}
+                />
+ 
+               </div>
+            </div>
+          </div>     
       </div>
     );
   }
