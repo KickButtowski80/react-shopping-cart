@@ -112,12 +112,7 @@ class App extends Component {
                   
                     {this.state.text}
                                     <Counters
-                counters = {this.state.counters}
-                onReset={this.handleReset} 
-                onIncrement={this.handleIncrement} 
-                onDelete={this.handleDelete}
-                onCreate = {this.handleCreateCounter}
-                onReplicate = { this.handelReplicate}
+            
                 />
  
                </div>
