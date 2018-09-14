@@ -7,9 +7,9 @@ class App extends Component {
   state = {
     counters: [
       { id: 1, value: 0 },
-      { id: 2, value: 0 },
-      { id: 3, value: 0 },
-      { id: 4, value: 10 }
+      { id: 2, value: 1 },
+      { id: 3, value: 2 },
+      { id: 4, value: 3 }
     ],
 
     totalPrice: 0,
@@ -17,17 +17,18 @@ class App extends Component {
   }
 
     componentDidMount = () => {
-    console.log('GrandChild did mount.' + this.handleTotalPrice());
-    // this.setState({totalPrice: this.handleTotalPrice()});
   }
- 
+  
+  handleCreateCounter = () =>{
+    let count_id = Object.keys(this.state.counters).length;    
+    this.setState({counters: this.state.counters.concat({id: count_id+1 , value: 0})});     
+  }
   handleTotalPrice = () => {
    
     let { totalPrice } = this.state;
     let array = this.state.counters.map(a => (a.value));
     totalPrice = array.reduce((a, b) => a + b, 0);
     console.log(totalPrice);
-    // totalPrice += 1;
     this.setState({ totalPrice });
 
 
@@ -52,9 +53,6 @@ class App extends Component {
     this.setState({ counters }, 
       () => { this.handleTotalPrice() });   
     // this.handleTotalPrice();
-   
-
-
   }
 
   handleReset = () => {
@@ -84,7 +82,9 @@ class App extends Component {
           counters = {this.state.counters}
           onReset={this.handleReset} 
           onIncrement={this.handleIncrement} 
-          onDelete={this.handleDelete}/>
+          onDelete={this.handleDelete}
+          onCreate = {this.handleCreateCounter}
+          />
         </main>
       </div>
     );
