@@ -5,25 +5,24 @@ import './App.css';
 
 class App extends Component {
   state = {
-    counters: [
-      { id: 1, value: 0 },
-      { id: 2, value: 1 },
-      { id: 3, value: 2 },
-      { id: 4, value: 3 }
-    ],
-    totalPrice: 0,
-    
+    counters: [],
+    totalPrice: 0,    
     text: "",
 
   }
-
+   componentDidMount(){
+ 
+   }
+    componentDidUpdate(prevProps, prevState) {
+         
+    }
   
   handelReplicate = (counter) => {
  
     console.log("id in handelReplicate is " + counter.id);
     console.log("value in handleReplicate is "  + counter.value);
     this.setState({ text: "I am replicated" });
-    this.setState({counters: this.state.counters.concat({id: counter.id +1000 ,value: counter.value})});  
+    this.setState({counters: this.state.counters.concat({id: counter.id +1000 ,value: counter.value, replcated: true})});  
   }
   
   handleCreateCounter = () =>{
