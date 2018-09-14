@@ -7,10 +7,7 @@ class Counters extends Component {
         //destrcutring info 
         
         const { onCreate,onReset, counters, onDelete, onIncrement } = this.props;
-        console.log(this.props.counters);
-        let array_keys = [] ;
-        array_keys = Object.keys(this.props.counters);
-        console.log(array_keys);
+    
         return (
             <React.Fragment> 
                 <button 
@@ -29,7 +26,7 @@ class Counters extends Component {
                  //counter = {counter} is gonna have all the infos about state
                  //like value={counter.value} id={counter.id} 
              
-                <Counter key={ array_keys.includes(counter.id) ? (counter.id+10000) : counter.id} 
+                <Counter key={counter.id} 
                          onDelete={onDelete}
                          onIncrement={onIncrement}
                          counter={counter} 

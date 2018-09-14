@@ -19,19 +19,11 @@ class App extends Component {
 
   
   handelReplicate = (counter) => {
-    let value = counter.value;
-    let id = counter.id;
+ 
     console.log("id in handelReplicate is " + counter.id);
     console.log("value in handleReplicate is "  + counter.value);
     this.setState({ text: "I am replicated" });
-    let array_counters = this.state.counters;
-    let unique_id =  undefined;
-    
-    if(Object.keyes(array_counters).inludes(counter.id))
-    unique_id =Math.floor(Math.random() * 10000001)
-    else
-    unique_id =counter.id
-    this.setState({counters: this.state.counters.concat({id: unique_id ,value: counter.value})});  
+    this.setState({counters: this.state.counters.concat({id: counter.id +1000 ,value: counter.value})});  
   }
   
   handleCreateCounter = () =>{
@@ -111,9 +103,7 @@ class App extends Component {
                   <h4 className="p-3 mb-2 bg-success text-white"> I am the replicate column </h4>
                   
                     {this.state.text}
-                                    <Counters
-            
-                />
+                                    
  
                </div>
             </div>
