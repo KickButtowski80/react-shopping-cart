@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Counter from './counter';
-
+import uuidv1 from 'uuid/v1'
 class Counters extends Component {
 
     render() {
@@ -25,14 +25,14 @@ class Counters extends Component {
                 counters.map( counter => 
                  //counter = {counter} is gonna have all the infos about state
                  //like value={counter.value} id={counter.id} 
-             
-                <Counter key={counter.id} 
+                
+                <Counter key={uuidv1()} 
                          onDelete={onDelete}
                          onIncrement={onIncrement}
                          counter={counter} 
                          name = "counter" 
-                         onReplicate = {this.props.onReplicate} /
-                         > )
+                         onReplicate = {this.props.onReplicate} />
+                          )
                          }
             </React.Fragment>
         );

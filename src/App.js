@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Counters from './components/counters';
 import NavBar from './components/navbar';
 import './App.css';
-
+import uuidv1 from 'uuid/v1';
 class App extends Component {
   state = {
     counters: [],
@@ -22,7 +22,8 @@ class App extends Component {
     console.log("id in handelReplicate is " + counter.id);
     console.log("value in handleReplicate is "  + counter.value);
     this.setState({ text: "I am replicated" });
-    this.setState({counters: this.state.counters.concat({id: counter.id +1000 ,value: counter.value, replcated: true})});  
+    this.setState({counters: this.state.counters.concat({id: uuidv1() ,value: counter.value, replcated: true})});  
+    console.log("vvidv1 is " + uuidv1() );
     this.setState({totalPrice: this.state.totalPrice+ counter.value })
   }
   
@@ -62,6 +63,7 @@ class App extends Component {
 
   handleReset = () => {
     this.setState({ totalPrice: 0 });
+    console.log("handleRest" + JSON.stringify(this.state.counters));
     const counters = this.state.counters.map(c => {
       c.value = 0;
       return c;
